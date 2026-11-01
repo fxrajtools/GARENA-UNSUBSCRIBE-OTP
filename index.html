@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>FX RAJXMODS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+html{margin:0;padding:0;width:100%;height:100%;overflow:hidden;touch-action:none;overscroll-behavior:none;position:fixed}
+body{
+  margin:0;padding:0;width:100%;height:100vh;overflow:hidden;
+  background:radial-gradient(ellipse at 15% 10%, rgba(255, 0, 128, 0.12), transparent 45%),
+             radial-gradient(ellipse at 85% 90%, rgba(255, 51, 68, 0.10), transparent 45%),
+             #fcfbfe;
+  font-family:'Cinzel', serif;color:#1a1a1a;touch-action:none;overscroll-behavior:none;position:fixed;inset:0
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:linear-gradient(rgba(255, 0, 100, 0.03) 1px, transparent 1px),
+             linear-gradient(90deg, rgba(255, 0, 100, 0.03) 1px, transparent 1px);
+  background-size:32px 32px;z-index:0
+}
+
+.wrapper{width:100%;max-width:1000px;margin:0 auto;padding:15px 12px;position:relative;z-index:1;animation:wrapperIn .65s cubic-bezier(.2,.8,.2,1);height:100vh;display:flex;flex-direction:column;justify-content:center}
+
+/* UNIQUE 3D CINZEL TITLE WITH PINK-RED GLOW & ANIMATION */
+.title-container {
+  text-align: center;
+  margin: 0 auto 18px;
+  position: relative;
+  isolation: isolate;
+  animation: floatTitle 4s ease-in-out infinite alternate;
+}
+
+.my-header {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6.5vw, 46px);
+  font-weight: 900;
+  letter-spacing: clamp(3px, 1.5vw, 7px);
+  line-height: 1.2;
+  color: #111111;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 6px 0 12px;
+  text-shadow: 
+    1px 1px 0px #ffffff,
+    2px 2px 0px #ff99c2,
+    3px 3px 0px #ff3366,
+    4px 4px 10px rgba(255, 0, 128, 0.35),
+    0px 0px 25px rgba(255, 0, 85, 0.25);
+}
+
+.my-header::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(85%, 360px);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff007f 20%, #ff3344 50%, #ff007f 80%, transparent);
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.6);
+  border-radius: 99px;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.my-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 9px;
+  background: #ff007f;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: 0 0 10px #ff007f;
+}
+
+/* VIEWS SWITCHING WITH SMOOTH ANIMATIONS */
+.view-section{display:none;width:100%;animation:fadeInSlide .45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards}
+.view-section.active{display:block}
+
+/* ADVANCED HOME PAGE STYLING */
+.home-card{
+  background: linear-gradient(145deg, #ffffff, #fff2f6);
+  border: 1px solid rgba(255, 0, 128, 0.25);
+  border-radius: 24px;
+  padding: 26px 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(255, 0, 100, 0.08), inset 0 1px 0 #ffffff;
+  backdrop-filter: blur(10px);
+  animation: pulseCard 3s ease-in-out infinite alternate;
+}
+
+.home-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(255, 0, 128, 0.08), rgba(255, 51, 68, 0.08));
+  border: 1px solid rgba(255, 0, 128, 0.3);
+  color: #ff007f;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 15px rgba(255, 0, 100, 0.1);
+  animation: floatBadge 2s ease-in-out infinite alternate;
+}
+.home-badge svg { width: 16px; height: 16px; fill: #ff007f; }
+
+.home-title{
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.home-desc{
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #555555;
+  line-height: 1.65;
+  margin-bottom: 22px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-features{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.feature-box{
+  background: #ffffff;
+  border: 1px solid rgba(255, 0, 128, 0.18);
+  border-radius: 16px;
+  padding: 14px 16px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 5px 18px rgba(255, 0, 100, 0.04);
+  transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.feature-box:hover{ transform: translateY(-3px); }
+
+.feature-icon-wrap{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(255, 51, 68, 0.1));
+  border: 1px solid rgba(255, 0, 127, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon-wrap svg{ width: 20px; height: 20px; fill: #ff007f; }
+
+.feature-name{
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 900;
+  color: #111;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+}
+.feature-text{ font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: #666; line-height: 1.35; }
+
+.get-code-btn{
+  position: relative;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(115deg, #ff007f 0%, #ff3344 50%, #d6006c 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 0, 100, 0.35);
+  transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+  animation: pulseBtn 2s infinite;
+}
+.get-code-btn:hover{ filter: brightness(1.1); box-shadow: 0 12px 30px rgba(255, 0, 100, 0.5); }
+.get-code-btn:active{ transform: scale(.97); }
+
+/* STEP 2: CREDENTIALS & COPY PAGE */
+.step2-card{
+  background: linear-gradient(145deg, #ffffff, #fff2f6);
+  border: 1px solid rgba(255, 0, 128, 0.25);
+  border-radius: 24px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(255, 0, 100, 0.08);
+  animation: cardEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.step2-title{
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  letter-spacing: 1.5px;
+}
+.credentials-stack{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.credential-card{
+  position: relative;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 0, 120, 0.25);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  text-align: left;
+  transition: transform .3s ease;
+}
+.credential-card:hover{ transform: translateY(-2px); }
+.credential-title{
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ff007f;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.credential-title svg { width: 16px; height: 16px; fill: #ff007f; }
+.credential-row{ display: flex; align-items: center; gap: 8px; }
+.credential-value{
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  color: #111;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+}
+.copy-btn{
+  flex-shrink: 0;
+  border: none;
+  background: linear-gradient(135deg, #ff007f, #ff3344);
+  color: #fff;
+  border-radius: 9px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(255, 0, 100, 0.25);
+  transition: transform .2s, filter .2s;
+}
+.copy-btn:hover{ filter: brightness(1.1); transform: scale(1.05); }
+.copy-btn:active{ transform: scale(0.95); }
+
+.nav-btn-row {
+  display: flex;
+  gap: 10px;
+}
+.back-btn{
+  width: 35%;
+  padding: 16px;
+  background: linear-gradient(115deg, #333333 0%, #555555 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all .2s ease;
+}
+.back-btn:hover{ filter: brightness(1.1); }
+.back-btn:active{ transform: scale(.97); }
+
+.next-btn{
+  flex: 1;
+  padding: 16px;
+  background: linear-gradient(115deg, #ff007f 0%, #ff3344 50%, #d6006c 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 0, 100, 0.35);
+  transition: all .2s ease;
+}
+.next-btn:hover{ filter: brightness(1.1); }
+.next-btn:active{ transform: scale(.97); }
+
+/* STEP 3: SEND OTP FORM CONTAINER */
+.form-container{
+  background: #ffffff;
+  border: 1px solid rgba(255, 0, 128, 0.35);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 15px 40px rgba(255, 0, 100, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: cardEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.form-label{
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 900;
+  color: #ff007f;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-label svg { width: 16px; height: 16px; fill: #ff007f; }
+.form-input{
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 1px solid rgba(255, 0, 128, 0.25);
+  color: #111;
+  font-size: 15px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus{
+  border-color: #ff007f;
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.2);
+  background: #fff;
+}
+
+.send-otp-btn-container{ margin-top: 16px; display: flex; gap: 10px; }
+.send-otp-btn{
+  flex: 1;
+  padding: 16px;
+  background: linear-gradient(115deg, #ff007f 0%, #ff3344 50%, #d6006c 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 0, 100, 0.35);
+  transition: all .2s ease;
+  animation: pulseBtn 2s infinite;
+}
+.send-otp-btn:hover{ filter: brightness(1.1); }
+.send-otp-btn:active{ transform: scale(.97); }
+
+/* FULLSCREEN COUNTDOWN OVERLAY (NO BOX, PURE TEXT & ANIMATION) */
+.fullscreen-countdown-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 3, 10, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.fullscreen-countdown-overlay.show{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.countdown-number{
+  font-family: 'Cinzel', serif;
+  font-size: clamp(100px, 25vw, 180px);
+  font-weight: 900;
+  color: #ff007f;
+  text-shadow: 0 0 40px #ff007f, 0 0 80px rgba(255, 0, 128, 0.6), 2px 2px 0px #fff;
+  animation: countdownPop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+  line-height: 1;
+}
+.countdown-label{
+  font-family: 'Cinzel', serif;
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(255, 0, 128, 0.8);
+  animation: fadeInSlide 0.5s ease-out;
+}
+
+/* ADVANCED 3D TOP NOTIFICATION SYSTEM */
+.top-notification{
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  width: 90%;
+  max-width: 420px;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffffff, #fff0f5);
+  border: 1px solid rgba(255, 0, 128, 0.35);
+  color: #1a1a1a;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  box-shadow: 0 15px 40px rgba(255, 0, 100, 0.15), 0 5px 15px rgba(0,0,0,0.06);
+  z-index: 99999;
+  transition: top .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.top-notification.show{ top: 20px; }
+.notif-glow-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff007f;
+  box-shadow: 0 0 10px #ff007f;
+  flex-shrink: 0;
+  animation: pulseDot 1.5s infinite;
+}
+
+/* ADVANCED 3D POPUP MODAL */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 5, 12, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all .3s ease;
+  padding: 20px;
+}
+.modal-overlay.show{ opacity: 1; visibility: visible; pointer-events: auto; }
+
+.modal-box{
+  background: linear-gradient(155deg, #ffffff, #fff5f8);
+  border: 1px solid rgba(255, 0, 128, 0.4);
+  width: 100%;
+  max-width: 360px;
+  padding: 32px 22px 22px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(255, 0, 100, 0.2), 0 10px 30px rgba(0,0,0,0.08);
+  transform: scale(0.8) translateY(20px);
+  transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.show .modal-box{ transform: scale(1) translateY(0); }
+
+.success-icon-wrap{
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(0, 200, 100, 0.12), rgba(0, 255, 128, 0.2));
+  border: 2px solid #00c879;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 25px rgba(0, 200, 100, 0.25);
+  animation: bounceIcon .6s ease;
+}
+.success-icon-wrap svg { width: 30px; height: 30px; fill: #00a862; }
+
+.modal-title{ font-family: 'Cinzel', serif; font-size: 20px; font-weight: 900; color: #111; margin-bottom: 10px; letter-spacing: 2px; }
+.modal-text{ font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: #555; margin-bottom: 22px; line-height: 1.6; }
+.modal-ok-btn{
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(105deg, #ff007f, #ff3344);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 0, 100, 0.35);
+  transition: filter .2s;
+}
+.modal-ok-btn:hover{ filter: brightness(1.1); }
+
+@keyframes floatTitle { 0% { transform: translateY(0); } 100% { transform: translateY(-4px); } }
+@keyframes glowPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+@keyframes wrapperIn{ from{ opacity:0; transform:translateY(12px) } to{ opacity:1; transform:translateY(0) } }
+@keyframes fadeInSlide{ from{ opacity:0; transform:translateY(12px) scale(0.97) } to{ opacity:1; transform:translateY(0) scale(1) } }
+@keyframes pulseDot{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(0.7); opacity:0.5 } }
+@keyframes bounceIcon{ 0%{ transform:scale(0.4) } 70%{ transform:scale(1.15) } 100%{ transform:scale(1) } }
+@keyframes pulseCard{ 0%{ box-shadow: 0 20px 50px rgba(255, 0, 100, 0.08) } 100%{ box-shadow: 0 25px 60px rgba(255, 0, 100, 0.16) } }
+@keyframes floatBadge{ 0%{ transform: translateY(0) } 100%{ transform: translateY(-3px) } }
+@keyframes pulseBtn{ 0%, 100%{ box-shadow: 0 8px 25px rgba(255, 0, 100, 0.35) } 50%{ box-shadow: 0 12px 35px rgba(255, 0, 100, 0.6) } }
+@keyframes cardEntrance{ from{ opacity: 0; transform: scale(0.95) translateY(10px); } to{ opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes countdownPop{ 0%{ transform: scale(0.95); opacity: 0.8; } 100%{ transform: scale(1.05); opacity: 1; } }
+
+@media(max-width: 480px){ .home-features{ grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ADVANCED NOTIFICATION SYSTEM -->
+<div class="top-notification" id="topNotif">
+  <div class="notif-glow-dot"></div>
+  <div id="notifText">FX RAJXMODS — SYSTEM SECURED</div>
+</div>
+
+<!-- FULLSCREEN COUNTDOWN OVERLAY (NO BOX, PURE TEXT & ANIMATION) -->
+<div class="fullscreen-countdown-overlay" id="fullscreenCountdown">
+  <div class="countdown-number" id="countdownNum">5</div>
+  <div class="countdown-label">DISPATCHING OTP SECURELY...</div>
+</div>
+
+<!-- ADVANCED SUCCESS POPUP MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-box">
+    <div class="success-icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    </div>
+    <div class="modal-title">SUCCESS</div>
+    <div class="modal-text">We have successfully send code to your email address</div>
+    <button class="modal-ok-btn" type="button" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="title-container">
+    <div class="my-header">FX RAJXMODS</div>
+  </div>
+
+  <!-- PAGE 1: HOME PAGE -->
+  <div class="view-section active" id="homeView">
+    <div class="home-card">
+      <div class="home-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8s0 0 0 0z"/></svg>
+        100% SECURE & ENCRYPTED PORTAL
+      </div>
+      <div class="home-title">OTP VERIFICATION GATEWAY</div>
+      <div class="home-desc">
+        Welcome to the official FX RAJXMODS automated verification portal. Click the button below to proceed to credentials and code generation.
+      </div>
+      
+      <div class="home-features">
+        <div class="feature-box">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+          </div>
+          <div>
+            <div class="feature-name">Fast Dispatch</div>
+            <div class="feature-text">Instant code processing.</div>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          </div>
+          <div>
+            <div class="feature-name">Protected</div>
+            <div class="feature-text">Encrypted protocol.</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="get-code-btn" type="button" onclick="goToStep2()">GET CODE</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2: CREDENTIALS & COPY PAGE -->
+  <div class="view-section" id="step2View">
+    <div class="step2-card">
+      <div class="step2-title">SYSTEM CREDENTIALS</div>
+      <div class="home-desc" style="margin-bottom:15px;">Copy your username and password below before proceeding to OTP verification.</div>
+      
+      <div class="credentials-stack">
+        <div class="credential-card">
+          <div class="credential-title">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            Username
+          </div>
+          <div class="credential-row">
+            <div class="credential-value" id="userVal">FX_RAJXMODS</div>
+            <button class="copy-btn" type="button" onclick="copyText('FX_RAJXMODS','Username')">COPY</button>
+          </div>
+        </div>
+        <div class="credential-card">
+          <div class="credential-title">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            Password
+          </div>
+          <div class="credential-row">
+            <div class="credential-value" id="passVal">Fxjeet@12345</div>
+            <button class="copy-btn" type="button" onclick="copyText('Fxjeet@12345','Password')">COPY</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btn-row">
+        <button class="back-btn" type="button" onclick="goToHome()">BACK</button>
+        <button class="next-btn" type="button" onclick="goToStep3()">NEXT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: SEND OTP FORM PAGE -->
+  <div class="view-section" id="step3View">
+    <div class="form-container">
+      <div class="form-group">
+        <div class="form-label">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          Username
+        </div>
+        <input type="password" class="form-input" id="userInputField" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          Password
+        </div>
+        <input type="password" class="form-input" id="passInputField" placeholder="Enter password">
+      </div>
+      <div class="form-group">
+        <div class="form-label">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Address
+        </div>
+        <input type="email" class="form-input" id="emailInputField" placeholder="Enter your email address" style="text-transform: lowercase;">
+      </div>
+    </div>
+    
+    <div class="send-otp-btn-container">
+      <button class="back-btn" type="button" onclick="goToStep2()">BACK</button>
+      <button class="send-otp-btn" type="button" onclick="startCountdownAndSend()">SEND OTP</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let notifTimer;
+
+function goToHome(){
+  document.getElementById("step2View").classList.remove("active");
+  document.getElementById("step3View").classList.remove("active");
+  document.getElementById("homeView").classList.add("active");
+  showTopNotif("RETURNED TO HOME GATEWAY");
+}
+
+function goToStep2(){
+  document.getElementById("homeView").classList.remove("active");
+  document.getElementById("step3View").classList.remove("active");
+  document.getElementById("step2View").classList.add("active");
+  showTopNotif("CREDENTIALS LOADED SUCCESSFULLY");
+}
+
+function goToStep3(){
+  document.getElementById("homeView").classList.remove("active");
+  document.getElementById("step2View").classList.remove("active");
+  document.getElementById("step3View").classList.add("active");
+  showTopNotif("OTP GATEWAY READY — ENTER DETAILS");
+}
+
+function startCountdownAndSend(){
+  const userEntered = document.getElementById("userInputField").value.trim();
+  const passEntered = document.getElementById("passInputField").value.trim();
+  const emailInput = document.getElementById("emailInputField");
+  const email = emailInput.value.trim();
+
+  const correctUser = "FX_RAJXMODS";
+  const correctPass = "Fxjeet@12345";
+
+  if(!userEntered){
+    showTopNotif("PLEASE ENTER YOUR USERNAME");
+    document.getElementById("userInputField").focus();
+    return;
+  }
+
+  if(!passEntered){
+    showTopNotif("PLEASE ENTER YOUR PASSWORD");
+    document.getElementById("passInputField").focus();
+    return;
+  }
+
+  if(userEntered !== correctUser || passEntered !== correctPass){
+    showTopNotif("INVALID USERNAME OR PASSWORD");
+    return;
+  }
+  
+  if(!email){
+    showTopNotif("PLEASE ENTER YOUR EMAIL ADDRESS");
+    emailInput.focus();
+    return;
+  }
+  
+  emailInput.value = email.toLowerCase();
+
+  const overlay = document.getElementById("fullscreenCountdown");
+  const numElem = document.getElementById("countdownNum");
+  
+  let count = 5;
+  numElem.textContent = count;
+  overlay.classList.add("show");
+  
+  const timer = setInterval(()=>{
+    count--;
+    if(count > 0){
+      numElem.textContent = count;
+    }else{
+      clearInterval(timer);
+      overlay.classList.remove("show");
+      document.getElementById("successModal").classList.add("show");
+    }
+  }, 1000);
+}
+
+function closeModal(){
+  document.getElementById("successModal").classList.remove("show");
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+  showTopNotif("FX RAJXMODS — SECURE PORTAL ACTIVE", 3000);
+});
+
+function copyText(text,label){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>showTopNotif(label+" COPIED SUCCESSFULLY")).catch(()=>fallbackCopy(text,label));
+  }else fallbackCopy(text,label);
+}
+
+function fallbackCopy(text,label){
+  try{
+    const area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");
+    area.style.position="fixed";area.style.top="0";area.style.left="0";area.style.width="1px";area.style.height="1px";area.style.opacity="0";
+    document.body.appendChild(area);area.focus();area.select();const ok=document.execCommand("copy");document.body.removeChild(area);
+    if(ok)showTopNotif(label+" COPIED SUCCESSFULLY");else showTopNotif("COPY FAILED — PLEASE TRY AGAIN");
+  }catch(e){showTopNotif("COPY FAILED — PLEASE TRY AGAIN")}
+}
+
+function showTopNotif(msg,duration=2600){
+  const notif=document.getElementById("topNotif");
+  document.getElementById("notifText").textContent=msg;
+  notif.classList.add("show");
+  clearTimeout(notifTimer);
+  notifTimer=setTimeout(()=>notif.classList.remove("show"),duration);
+}
+
+function lockPage(){
+  document.documentElement.style.overflow="hidden";document.body.style.overflow="hidden";
+  document.documentElement.style.position="fixed";document.body.style.position="fixed";
+  document.documentElement.style.width="100%";document.body.style.width="100%";
+  document.documentElement.style.height="100%";document.body.style.height="100%";
+}
+document.addEventListener("touchmove",function(e){if(!e.target.closest(".form-container")&&!e.target.closest(".step2-card"))e.preventDefault()},{passive:false});
+document.addEventListener("DOMContentLoaded",lockPage);
+window.addEventListener("load",lockPage);
+document.getElementById("successModal").addEventListener("click",e=>{if(e.target.id==="successModal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+</script>
+</body>
+</html>
